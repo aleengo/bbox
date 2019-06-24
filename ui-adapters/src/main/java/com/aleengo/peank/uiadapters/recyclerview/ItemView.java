@@ -15,11 +15,11 @@ import lombok.Getter;
 public abstract class ItemView<E> extends FrameLayout {
 
     @Getter
-    private AdapterBase.OnItemClickListener onItemClickListener;
+    private AdapterBase.OnItemClickListener<E> onItemClickListener;
     @Getter
-    private AdapterBase.OnItemLongClickListener onItemLongClickListener;
+    private AdapterBase.OnItemLongClickListener<E> onItemLongClickListener;
     @Getter
-    private AdapterBase.OnMoreButtonClickListener onMoreButtonClickListener;
+    private AdapterBase.OnMoreButtonClickListener<E> onMoreButtonClickListener;
 
     public ItemView(Context context) {
         this(context, null);
