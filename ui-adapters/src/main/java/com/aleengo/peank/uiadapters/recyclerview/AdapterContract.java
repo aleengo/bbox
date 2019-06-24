@@ -1,6 +1,9 @@
 package com.aleengo.peank.uiadapters.recyclerview;
 
 
+import android.view.MenuItem;
+import android.view.View;
+
 import java.util.Collection;
 
 /**
@@ -8,6 +11,18 @@ import java.util.Collection;
  * Created by bau.cj on 22/06/2019.
  */
 public interface AdapterContract<E> {
+
+    interface OnItemClickListener<T> {
+        void onItemClick(View view, T obj, int position);
+    }
+
+    interface OnMoreButtonClickListener<T> {
+        void onItemClick(View view, T obj, MenuItem item);
+    }
+
+    interface OnItemLongClickListener<T> {
+        void onItemLongClick(View view, T obj, int position);
+    }
 
     void clear();
     E getItem(int position);
