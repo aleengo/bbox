@@ -6,9 +6,12 @@ buildscript {
         jcenter()
         
     }
+
     apply from: 'androidx-versions.gradle'
+    apply from: 'dependencies.gradle'
+
     dependencies {
-        classpath deps.androidgradleplugin
+        classpath deps.android_gradle_plugin
         
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,7 +22,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
