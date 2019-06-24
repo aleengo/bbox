@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/peank.iml" filepath="$PROJECT_DIR$/peank.iml" />
       <module fileurl="file://$PROJECT_DIR$/tools/tools.iml" filepath="$PROJECT_DIR$/tools/tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui-adapters/ui-adapters.iml" filepath="$PROJECT_DIR$/ui-adapters/ui-adapters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui-resources/ui-resources.iml" filepath="$PROJECT_DIR$/ui-resources/ui-resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui-utils/ui-utils.iml" filepath="$PROJECT_DIR$/ui-utils/ui-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/widget/widget.iml" filepath="$PROJECT_DIR$/widget/widget.iml" />
     </modules>
   </component>

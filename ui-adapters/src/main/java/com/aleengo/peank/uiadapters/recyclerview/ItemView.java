@@ -22,24 +22,20 @@ public abstract class ItemView<E> extends FrameLayout {
     private AdapterBase.OnMoreButtonClickListener<E> onMoreButtonClickListener;
 
     public ItemView(Context context) {
-        this(context, null);
+        super(context);
     }
 
-    public ItemView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+    public abstract void bind(final E item, final int position);
 
-    public abstract void bind(E item, int position);
-
-    public void setOnItemClickListener(AdapterBase.OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(final AdapterBase.OnItemClickListener<E> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public void setOnItemLongClickListener(AdapterBase.OnItemLongClickListener onItemLongClickListener) {
+    public void setOnItemLongClickListener(final AdapterBase.OnItemLongClickListener<E> onItemLongClickListener) {
         this.onItemLongClickListener = onItemLongClickListener;
     }
 
-    public void setOnMoreButtonClickListener(AdapterBase.OnMoreButtonClickListener onMoreButtonClickListener) {
+    public void setOnMoreButtonClickListener(final AdapterBase.OnMoreButtonClickListener<E> onMoreButtonClickListener) {
         this.onMoreButtonClickListener = onMoreButtonClickListener;
     }
 }

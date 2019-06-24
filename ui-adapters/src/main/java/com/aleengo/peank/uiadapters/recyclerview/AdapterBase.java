@@ -25,6 +25,7 @@ public interface AdapterBase<E> {
     }
 
     void clear();
+    int getItemPosition(final E item);
     E getItem(int position);
     void addItem(E item);
     void addItem(int position, E item);

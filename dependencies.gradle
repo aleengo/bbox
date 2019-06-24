@@ -20,6 +20,8 @@ deps.junit = "junit:junit:4.12"
 deps.lombok = "org.projectlombok:lombok:1.16.20"
 deps.gson = "com.google.code.gson:gson:2.8.5"
 
+deps.materialripple = 'com.balysv:material-ripple:1.0.2' // ripple effect
+
 def butterknife = [:]
 butterknife.runtime = "com.jakewharton:butterknife:10.0.0"
 butterknife.compiler = "com.jakewharton:butterknife-compiler:10.0.0"

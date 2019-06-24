@@ -1,1 +1,1 @@
-include ':app', ':tools', ':widget', ':ui-adapters'
+include ':app', ':tools', ':widget', ':ui-adapters', ':ui-resources', ':ui-utils'

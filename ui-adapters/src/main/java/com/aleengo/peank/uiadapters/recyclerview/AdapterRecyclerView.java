@@ -13,6 +13,8 @@ import java.util.List;
 
 import lombok.Getter;
 
+import static android.view.View.NO_ID;
+
 /**
  * Copyright Aleengo 2019. All rights reserved.
  * Created by bau.cj on 22/06/2019.
@@ -24,6 +26,7 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     @Getter
     private Context context;
     private final List<E> items;
+    private final List<E> mOriginalList;
 
     @Getter
     private OnItemClickListener onItemClickListener;
@@ -33,8 +36,19 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     private OnMoreButtonClickListener onMoreButtonClickListener;
 
     public AdapterRecyclerView(Context context) {
+        this(context, new LinkedList<E>());
+    }
+
+    public AdapterRecyclerView(Context context, List<E> items) {
         this.context = context;
-        this.items = new LinkedList<>();
+        this.items = items;
+        mOriginalList = items;
+    }
+
+    public List<E> getOriginalList() {
+        final List<E> copy = new LinkedList<>();
+        copy.addAll(mOriginalList);
+        return copy;
     }
 
     @NonNull
@@ -54,6 +68,23 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     @Override
     public E getItem(int position) {
         return items.get(position);
+    }
+
+    @Override
+    public int getItemPosition(final E item) {
+        final int count = getItemCount();
+
+        for (int pos = 0; pos < count; pos++) {
+            final E e = items.get(pos);
+            if (!e.equals(item)) continue;
+            return pos;
+        }
+        return RecyclerView.NO_POSITION;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -90,7 +121,11 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     @Override
     public void addItems(Collection<E> newItems) {
         final int oldSize = getItemCount();
-        items.addAll(newItems);
+
+        if (oldSize == 0) {
+            mOriginalList.addAll(newItems);
+        }
+        items.addAll(oldSize, newItems);
         notifyItemRangeChanged(oldSize, newItems.size());
     }
 
