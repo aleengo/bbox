@@ -19,11 +19,18 @@ import lombok.Getter;
  */
 public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
         extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>
-        implements AdapterContract<E> {
+        implements AdapterBase<E> {
 
     @Getter
     private Context context;
     private final List<E> items;
+
+    @Getter
+    private OnItemClickListener onItemClickListener;
+    @Getter
+    private OnItemLongClickListener onItemLongClickListener;
+    @Getter
+    private OnMoreButtonClickListener onMoreButtonClickListener;
 
     public AdapterRecyclerView(Context context) {
         this.context = context;
@@ -96,5 +103,17 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
             super(itemView);
             this.itemView = itemView;
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    public void setOnMoreButtonClickListener(OnMoreButtonClickListener onMoreButtonClickListener) {
+        this.onMoreButtonClickListener = onMoreButtonClickListener;
     }
 }

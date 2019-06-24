@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
+import lombok.Getter;
+
 
 /**
  * Copyright Aleengo 2019. All rights reserved.
@@ -11,6 +13,13 @@ import android.widget.FrameLayout;
  */
 
 public abstract class ItemView<E> extends FrameLayout {
+
+    @Getter
+    private AdapterBase.OnItemClickListener onItemClickListener;
+    @Getter
+    private AdapterBase.OnItemLongClickListener onItemLongClickListener;
+    @Getter
+    private AdapterBase.OnMoreButtonClickListener onMoreButtonClickListener;
 
     public ItemView(Context context) {
         this(context, null);
@@ -21,4 +30,16 @@ public abstract class ItemView<E> extends FrameLayout {
     }
 
     public abstract void bind(E item, int position);
+
+    public void setOnItemClickListener(AdapterBase.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(AdapterBase.OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    public void setOnMoreButtonClickListener(AdapterBase.OnMoreButtonClickListener onMoreButtonClickListener) {
+        this.onMoreButtonClickListener = onMoreButtonClickListener;
+    }
 }
