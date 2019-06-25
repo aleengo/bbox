@@ -25,6 +25,10 @@ public abstract class ItemView<E> extends FrameLayout {
         super(context);
     }
 
+    public ItemView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
     public abstract void bind(final E item, final int position);
 
     public void setOnItemClickListener(final AdapterBase.OnItemClickListener<E> onItemClickListener) {
