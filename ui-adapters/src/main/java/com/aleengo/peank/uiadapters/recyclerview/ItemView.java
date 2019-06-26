@@ -1,10 +1,10 @@
 package com.aleengo.peank.uiadapters.recyclerview;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import lombok.Getter;
+import androidx.annotation.LayoutRes;
 
 
 /**
@@ -12,34 +12,26 @@ import lombok.Getter;
  * Created by bau.cj on 22/06/2019.
  */
 
-public abstract class ItemView<E> extends FrameLayout {
+public abstract class ItemView<E> {
 
-    @Getter
-    private AdapterBase.OnItemClickListener<E> onItemClickListener;
-    @Getter
-    private AdapterBase.OnItemLongClickListener<E> onItemLongClickListener;
-    @Getter
-    private AdapterBase.OnMoreButtonClickListener<E> onMoreButtonClickListener;
+    private final View itemView;
 
-    public ItemView(Context context) {
-        super(context);
+    public ItemView(ViewGroup parent, @LayoutRes int id) {
+       this(parent, id, false);
     }
 
-    public ItemView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public ItemView(ViewGroup parent, @LayoutRes int id, boolean attachToRoot) {
+        this(LayoutInflater.from(parent.getContext()).inflate(id, parent, attachToRoot));
     }
 
-    public abstract void bind(final E item, final int position);
-
-    public void setOnItemClickListener(final AdapterBase.OnItemClickListener<E> onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public ItemView(View view) {
+        this.itemView = view;
     }
 
-    public void setOnItemLongClickListener(final AdapterBase.OnItemLongClickListener<E> onItemLongClickListener) {
-        this.onItemLongClickListener = onItemLongClickListener;
+    public View get() {
+        return itemView;
     }
 
-    public void setOnMoreButtonClickListener(final AdapterBase.OnMoreButtonClickListener<E> onMoreButtonClickListener) {
-        this.onMoreButtonClickListener = onMoreButtonClickListener;
-    }
+    public abstract void bind(E item, int position);
+
 }

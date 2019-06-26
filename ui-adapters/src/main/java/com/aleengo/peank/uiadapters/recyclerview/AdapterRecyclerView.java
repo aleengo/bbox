@@ -13,8 +13,6 @@ import java.util.List;
 
 import lombok.Getter;
 
-import static android.view.View.NO_ID;
-
 /**
  * Copyright Aleengo 2019. All rights reserved.
  * Created by bau.cj on 22/06/2019.
@@ -27,13 +25,6 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     private Context context;
     private final List<E> items;
     private final List<E> mOriginalList;
-
-    @Getter
-    private OnItemClickListener onItemClickListener;
-    @Getter
-    private OnItemLongClickListener onItemLongClickListener;
-    @Getter
-    private OnMoreButtonClickListener onMoreButtonClickListener;
 
     public AdapterRecyclerView(Context context) {
         this(context, new LinkedList<E>());
@@ -55,7 +46,7 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     @Override
     public AdapterRecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final ITEMVIEW itemview = onCreateItemView(parent, viewType);
-        return new ViewHolder(itemview);
+        return new ViewHolder(itemview.get(), itemview);
     }
 
     public abstract ITEMVIEW onCreateItemView(ViewGroup parent, int viewType);
@@ -89,9 +80,9 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
 
     @Override
     public void clear() {
-        final int oldSize = getItemCount();
+        final int count = getItemCount();
         items.clear();
-        notifyItemRangeChanged(getItemCount(), oldSize);
+        notifyItemRangeChanged(0, count);
     }
 
     @Override
@@ -119,36 +110,36 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     }
 
     @Override
-    public void addItems(Collection<E> newItems) {
+    public void addItems(Collection<E> collection) {
+        addItems(collection, false);
+    }
+
+    @Override
+    public void addItems(Collection<E> newItems, boolean extend) {
         final int oldSize = getItemCount();
 
         if (oldSize == 0) {
             mOriginalList.addAll(newItems);
         }
-        items.addAll(oldSize, newItems);
-        notifyItemRangeChanged(oldSize, newItems.size());
+
+        if (extend) {
+            items.addAll(oldSize, newItems);
+            notifyItemRangeChanged(oldSize, newItems.size());
+        } else {
+            items.clear();
+            items.addAll(newItems);
+            notifyItemRangeChanged(0, newItems.size());
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Getter
-        private View itemView;
+        private ItemView itemView;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder(@NonNull View view, @NonNull ItemView itemView) {
+            super(view);
             this.itemView = itemView;
         }
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
-        this.onItemLongClickListener = onItemLongClickListener;
-    }
-
-    public void setOnMoreButtonClickListener(OnMoreButtonClickListener onMoreButtonClickListener) {
-        this.onMoreButtonClickListener = onMoreButtonClickListener;
     }
 }

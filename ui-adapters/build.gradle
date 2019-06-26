@@ -31,6 +31,9 @@ dependencies {
     compileOnly deps.lombok
     annotationProcessor deps.lombok
 
+    implementation deps.butterknife.runtime
+    annotationProcessor deps.butterknife.compiler
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation deps.androidtestrunner
     androidTestImplementation deps.espresso.core

@@ -1,4 +1,4 @@
-package com.aleengo.peank.uiutils.utils;
+package com.aleengo.peank.uiutils.util;
 
 /**
  * Copyright (c) Aleengo, 2019. All rights reserved.
