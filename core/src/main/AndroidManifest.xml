@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aleengo.peank.material.widget" />
+    package="com.aleengo.peank.core" />

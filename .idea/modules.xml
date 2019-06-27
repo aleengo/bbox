@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/ndroid-box.iml" filepath="$PROJECT_DIR$/ndroid-box.iml" />
       <module fileurl="file://$PROJECT_DIR$/peank.iml" filepath="$PROJECT_DIR$/peank.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tools/tools.iml" filepath="$PROJECT_DIR$/tools/tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui-adapters/ui-adapters.iml" filepath="$PROJECT_DIR$/ui-adapters/ui-adapters.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui-resources/ui-resources.iml" filepath="$PROJECT_DIR$/ui-resources/ui-resources.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui-utils/ui-utils.iml" filepath="$PROJECT_DIR$/ui-utils/ui-utils.iml" />
