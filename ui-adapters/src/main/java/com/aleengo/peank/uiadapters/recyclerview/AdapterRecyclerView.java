@@ -33,7 +33,7 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     public AdapterRecyclerView(Context context, List<E> items) {
         this.context = context;
         this.items = items;
-        mOriginalList = items;
+        mOriginalList = new LinkedList<>();
     }
 
     public List<E> getOriginalList() {
@@ -124,11 +124,11 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
 
         if (extend) {
             items.addAll(oldSize, newItems);
-            notifyItemRangeChanged(oldSize, newItems.size());
+            notifyItemRangeChanged(oldSize, items.size());
         } else {
             items.clear();
             items.addAll(newItems);
-            notifyItemRangeChanged(0, newItems.size());
+            notifyItemRangeChanged(0, items.size());
         }
     }
 
