@@ -8,6 +8,14 @@ import android.view.View;
  */
 public interface ActionListener {
 
+    /**
+     * @return the name of the action; it can be any value
+     */
     String action();
+
+    /**
+     * Action to perfom when an event occurs
+     * @param source
+     */
     void actionPerformed(View source);
 }
