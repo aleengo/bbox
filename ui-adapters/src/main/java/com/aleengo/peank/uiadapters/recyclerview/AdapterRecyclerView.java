@@ -17,7 +17,7 @@ import lombok.Getter;
  * Copyright Aleengo 2019. All rights reserved.
  * Created by bau.cj on 22/06/2019.
  */
-public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
+public abstract class AdapterRecyclerView<E, ITEMVIEW extends ViewItemBase<E>>
         extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>
         implements AdapterBase<E> {
 
@@ -135,9 +135,9 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Getter
-        private ItemView itemView;
+        private ViewItemBase itemView;
 
-        public ViewHolder(@NonNull View view, @NonNull ItemView itemView) {
+        public ViewHolder(@NonNull View view, @NonNull ViewItemBase itemView) {
             super(view);
             this.itemView = itemView;
         }

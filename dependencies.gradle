@@ -31,4 +31,9 @@ def okhttp = [:]
 okhttp.runtime = "com.squareup.okhttp3:okhttp:3.12.0"
 deps.okhttp = okhttp
 
+def dagger2 = [:]
+dagger2.runtime = "com.google.dagger:dagger:2.21"
+dagger2.compiler = "com.google.dagger:dagger-compiler:2.21"
+deps.dagger2 = dagger2
+
 ext.deps = deps
