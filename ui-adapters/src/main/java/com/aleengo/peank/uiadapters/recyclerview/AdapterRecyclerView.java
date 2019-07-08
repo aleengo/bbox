@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aleengo.peank.uiadapters.ItemView;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,12 +19,13 @@ import lombok.Getter;
  * Copyright Aleengo 2019. All rights reserved.
  * Created by bau.cj on 22/06/2019.
  */
-public abstract class AdapterRecyclerView<E, ITEMVIEW extends ViewItemBase<E>>
+public abstract class AdapterRecyclerView<E, ITEMVIEW extends ItemView<E>>
         extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>
-        implements AdapterBase<E> {
+        implements AdapterRecylerViewBase<E> {
 
     @Getter
     private Context context;
+    @Getter
     private final List<E> items;
     private final List<E> mOriginalList;
 
@@ -36,10 +39,11 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ViewItemBase<E>>
         mOriginalList = items;
     }
 
+    public abstract ITEMVIEW onCreateItemView(ViewGroup parent, int viewType);
+
+    @Override
     public List<E> getOriginalList() {
-        final List<E> copy = new LinkedList<>();
-        copy.addAll(mOriginalList);
-        return copy;
+        return new LinkedList<>(mOriginalList);
     }
 
     @NonNull
@@ -48,8 +52,6 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ViewItemBase<E>>
         final ITEMVIEW itemview = onCreateItemView(parent, viewType);
         return new ViewHolder(itemview.get(), itemview);
     }
-
-    public abstract ITEMVIEW onCreateItemView(ViewGroup parent, int viewType);
 
     @Override
     public int getItemCount() {
@@ -70,7 +72,7 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ViewItemBase<E>>
             if (!e.equals(item)) continue;
             return pos;
         }
-        return RecyclerView.NO_POSITION;
+        return NO_POSITION;
     }
 
     @Override
@@ -116,28 +118,26 @@ public abstract class AdapterRecyclerView<E, ITEMVIEW extends ViewItemBase<E>>
 
     @Override
     public void addItems(Collection<E> newItems, boolean extend) {
-        final int oldSize = getItemCount();
+        int count = getItemCount();
 
-        if (oldSize == 0) {
+        if (count == 0) {
             mOriginalList.addAll(newItems);
         }
 
-        if (extend) {
-            items.addAll(oldSize, newItems);
-            notifyItemRangeChanged(oldSize, newItems.size());
-        } else {
+        if (!extend) {
             items.clear();
-            items.addAll(newItems);
-            notifyItemRangeChanged(0, newItems.size());
+            count = 0;
         }
+        items.addAll(count, newItems);
+        notifyItemRangeChanged(count, newItems.size());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Getter
-        private ViewItemBase itemView;
+        private ItemView itemView;
 
-        public ViewHolder(@NonNull View view, @NonNull ViewItemBase itemView) {
+        public ViewHolder(@NonNull View view, @NonNull ItemView itemView) {
             super(view);
             this.itemView = itemView;
         }

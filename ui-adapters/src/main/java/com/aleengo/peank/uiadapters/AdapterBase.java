@@ -1,7 +1,8 @@
-package com.aleengo.peank.uiadapters.recyclerview;
+package com.aleengo.peank.uiadapters;
 
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Copyright Aleengo 2019. All rights reserved.
@@ -9,9 +10,13 @@ import java.util.Collection;
  */
 public interface AdapterBase<E> {
 
+    int NO_POSITION = -1;
+
     void clear();
+
+    List<E> getOriginalList();
+
     int getItemPosition(final E item);
-    E getItem(int position);
     void addItem(E item);
     void addItem(int position, E item);
     void removeItem(int position);
