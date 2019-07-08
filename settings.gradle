@@ -1,1 +1,1 @@
-include ':app', ':core', ':widget', ':ui-adapters', ':ui-resources', ':ui-utils'
+include ':app', ':core', ':widget', ':ui-adapters', ':ui-resources', ':ui-utils', ':snackbar-toast'
